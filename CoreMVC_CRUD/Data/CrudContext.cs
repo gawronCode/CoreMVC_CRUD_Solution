@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CoreMVC_CRUD.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace CoreMVC_CRUD.Data
 {
-    public class Context : DbContext
+    public class CrudContext : DbContext
     {
 
-        public Context(DbContextOptions<Context> options) : base(options)
+        public CrudContext(DbContextOptions<CrudContext> options) : base(options)
         {
             
         }
 
-
-
+        public DbSet<Person> Person { get; set; }
 
     }
 }
