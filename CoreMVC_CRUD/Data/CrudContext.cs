@@ -16,6 +16,7 @@ namespace CoreMVC_CRUD.Data
         }
 
         public DbSet<Person> Person { get; set; }
+        public DbSet<Comment> Comment { get; set; }
 
     }
 }

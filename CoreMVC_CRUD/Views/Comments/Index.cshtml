@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@using System.Linq
+@model IEnumerable<CoreMVC_CRUD.Models.Comment>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="container">
+    <div class="row">
+        <h1>Comments |@Model.Count().ToString()| <div class="pull-right"><a href="#" id="addacomment" class="btn btn-primary">Add a coment</a> </div></h1>
+    </div>
+    <div class="row" id="addcomment" style="display: none;">
+        <form asp-action="PostComment">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label for="UserName">User Name</label>
+                <input class="form-control" id="UserName" placeholder="User Name" style="width: 30%">
+            </div>
+            <div class="form-group">
+                <label for="CommentContent">Comment</label>
+                <textarea class="form-control" id="CommentContent" placeholder="Enter your comment..." rows="3" cols="100"></textarea>
+            </div>
+            <input type="submit" value="Post Comment" button class="btn btn-primary">
+        </form>
+    </div>
+    <hr>
+
+    @foreach (var item in Model)
+    {
+        <div class="media">
+            <div class="media-body">
+                <h5 class="mt-0">@item.Author   <small>@item.DateOfCreation.ToString()</small></h5>
+                @item.Contents
+            </div>
+        </div>
+    }
+    <hr>
+</div>
