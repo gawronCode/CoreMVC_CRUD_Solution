@@ -26,15 +26,21 @@ namespace CoreMVC_CRUD.Controllers
         }
 
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> PostComment([Bind("Id,Contents,Author,DateOfCreation")]
-            Comment comment)
+        public async Task<ActionResult> PostComment(string author, string commentContent)
         {
-            comment.DateOfCreation = DateTime.Now;
-            if (ModelState.IsValid)
+
+            if (author == string.Empty || commentContent == string.Empty) return RedirectToAction(nameof(Index));
+            if (author == null || commentContent == null) return RedirectToAction(nameof(Index));
+
+            Comment comment = new Comment()
             {
-                _context.Add(comment);
-                await _context.SaveChangesAsync();
-            }
+                Author = author,
+                Contents = commentContent,
+                DateOfCreation = DateTime.Now
+            };
+            
+            _context.Add(comment); 
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
