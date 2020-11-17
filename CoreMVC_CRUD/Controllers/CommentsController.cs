@@ -44,5 +44,14 @@ namespace CoreMVC_CRUD.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        
+        public async Task<IActionResult> DeleteComment(int id)
+        {
+            var comment = await _context.Comment.FindAsync(id);
+            _context.Comment.Remove(comment);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }
